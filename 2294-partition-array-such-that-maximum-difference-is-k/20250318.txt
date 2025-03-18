@@ -1,0 +1,27 @@
+Date: 
+2025/03/18
+
+Idea: 
+This problem is to group the elements from the given array based on the k.
+Since we only care about each group's maximum and its minimum, no need to worry about if it is subsequence.
+so we can do:
+
+1. Sort the given array
+
+2. Define a variable as the start element, and initialize the result used for return (result = 1)
+
+3. For-loop iteration, starting by later element
+
+   - if (later elemnt - start element) > k, result++, setting the later element as the start element (means a new group starts)
+
+   - else, keep the same group
+
+   - return result
+
+
+Time complexity:
+The sort (quick-sort O(nlogn)) will dominate the for-loop (O(n)) -> O(nlogn)
+
+Space complexity:
+C++ STL in-place quicksort space complexity will be O(1), but it might be O(n) auxiliary space depending on the implementation
+Space for variables ans and x, take O(1) space
