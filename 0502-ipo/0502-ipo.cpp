@@ -18,7 +18,7 @@ public:
 
         priority_queue<int> pq;
 
-        for(int i = 0; i < k; i++)
+        while(k)
         {
             while(idx < num && w >= vec_pair[idx].first)
             {
@@ -33,6 +33,7 @@ public:
 
             w += pq.top();
             pq.pop();
+            k--;
         }
 
         return w;
