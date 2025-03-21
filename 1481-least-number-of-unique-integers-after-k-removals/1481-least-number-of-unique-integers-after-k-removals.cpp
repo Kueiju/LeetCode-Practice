@@ -6,17 +6,17 @@ public:
 
         for(int i = 0; i < arr.size(); i++)
         {
-            hMap[arr[i]]++;  //O(nlogn)
+            hMap[arr[i]]++;  //O(n)
         }
 
         priority_queue<pair<int, int>> pq;
 
         for(auto [key, val] : hMap)
         {
-            pq.push({-val, key}); //O(n)
+            pq.push({-val, key}); //O(mlogm)
         }
 
-        while(k > 0) //O(n)
+        while(k > 0) //O(mlogm)
         {
             if(pq.top().first * -1 > k)
                 return pq.size(); 
@@ -28,6 +28,5 @@ public:
         }
 
         return pq.size();
-        
     }
 };
