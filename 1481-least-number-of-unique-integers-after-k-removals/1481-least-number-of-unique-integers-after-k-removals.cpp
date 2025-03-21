@@ -9,11 +9,11 @@ public:
             hMap[arr[i]]++;  //O(n)
         }
 
-        vector<pair<int, int>> vec;
+        vector<int> vec;
 
         for(auto [element, frequency] : hMap)
         {
-            vec.push_back({frequency, element}); //O(n)
+            vec.push_back(frequency); //O(n)
         }
 
         sort(vec.begin(), vec.end()); //qsort O(nlogn)
@@ -30,20 +30,19 @@ public:
 
         // return vec.size() - idx;
 
-        int removeNum = 0;
+        int ans = vec.size();
 
         for(int i = 0; i < vec.size(); i++) //possible iterate all the elements, so O(n)
         {           
-            k -= vec[i].first;
-            if(k >= 0)
+            if(k >= vec[i])
             {
-                //vec.erase(vec.begin() + i);
-                removeNum++;
+                k -= vec[i];
+                ans--;
             }
             else
                 break;
         }
 
-        return vec.size() - removeNum;
+        return ans;
     }
 };
