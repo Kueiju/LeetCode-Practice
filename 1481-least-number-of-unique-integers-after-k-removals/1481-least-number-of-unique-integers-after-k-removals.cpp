@@ -18,32 +18,32 @@ public:
 
         sort(vec.begin(), vec.end()); //qsort O(nlogn)
 
-        int idx = 0;
-        while (k > 0 && idx < vec.size()) {
-            if (k >= vec[idx].first) {
-                k -= vec[idx].first;
-                idx++;
-            } else {
-                break;
-            }
-        }
-
-        return vec.size() - idx;
-
-        // int removeNum = 0;
-
-        // for(int i = 0; i < vec.size(); i++) //possible iterate all the elements, so O(n)
-        // {           
-        //     k -= vec[i].first;
-        //     if(k >= 0)
-        //     {
-        //         //vec.erase(vec.begin() + i);
-        //         removeNum++;
-        //     }
-        //     else
+        // int idx = 0;
+        // while (k > 0 && idx < vec.size()) {
+        //     if (k >= vec[idx].first) {
+        //         k -= vec[idx].first;
+        //         idx++;
+        //     } else {
         //         break;
+        //     }
         // }
 
-        //   return vec.size() - removeNum;
+        // return vec.size() - idx;
+
+        int removeNum = 0;
+
+        for(int i = 0; i < vec.size(); i++) //possible iterate all the elements, so O(n)
+        {           
+            k -= vec[i].first;
+            if(k >= 0)
+            {
+                //vec.erase(vec.begin() + i);
+                removeNum++;
+            }
+            else
+                break;
+        }
+
+        return vec.size() - removeNum;
     }
 };
