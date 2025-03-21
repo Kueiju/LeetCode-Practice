@@ -9,24 +9,41 @@ public:
             hMap[arr[i]]++;  //O(n)
         }
 
-        priority_queue<pair<int, int>> pq;
+        vector<pair<int, int>> vec;
 
-        for(auto [key, val] : hMap)
+        for(auto [element, frequency] : hMap)
         {
-            pq.push({-val, key}); //O(mlogm)
+            vec.push_back({frequency, element}); //O(n)
         }
 
-        while(k > 0) //O(mlogm)
-        {
-            if(pq.top().first * -1 > k)
-                return pq.size(); 
-            
-            k -= pq.top().first * -1;
+        sort(vec.begin(), vec.end()); //qsort O(nlogn)
 
+        // int idx = 0;
+        // while (k > 0 && idx < vec.size()) {
+        //     if (k >= vec[idx].first) {
+        //         k -= vec[idx].first;
+        //         idx++;
+        //     } else {
+        //         break;
+        //     }
+        // }
+
+        // return vec.size() - idx;
+
+        int removeNum = 0;
+
+        for(int i = 0; i < vec.size(); i++) //possible iterate all the elements, so O(n)
+        {           
+            k -= vec[i].first;
             if(k >= 0)
-                pq.pop();
+            {
+                //vec.erase(vec.begin() + i);
+                removeNum++;
+            }
+            else
+                break;
         }
 
-        return pq.size();
+          return vec.size() - removeNum;
     }
 };
