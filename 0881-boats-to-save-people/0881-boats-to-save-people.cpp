@@ -7,7 +7,7 @@ public:
         int i = 0; 
         int j = people.size() - 1;
         int ans = 0;
-        while(i <= j)
+        while(i <= j) //need to consider single element case (heaviest one), so i == j is considered
         {
             if(people[i] + people[j] <= limit)
             {
@@ -21,3 +21,6 @@ public:
         return ans;
     }
 };
+
+//time complexity: sort (O(nlogn)) + two pointer (O(n)), sort dominated => O(nlogn)
+//time complexity: from sort? O(n)
