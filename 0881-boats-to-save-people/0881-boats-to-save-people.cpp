@@ -23,4 +23,4 @@ public:
 };
 
 //time complexity: sort (O(nlogn)) + two pointer (O(n)), sort dominated => O(nlogn)
-//time complexity: from sort? O(n)
+//space complexity: from sort? O(logn)
