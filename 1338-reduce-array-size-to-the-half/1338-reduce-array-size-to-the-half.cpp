@@ -9,8 +9,8 @@ public:
             hMap[val]++; //O(n)
         }
         
-        int origArrSize = arr.size();
-        int n = origArrSize;
+        int halfOrigArrSize = arr.size() / 2;
+        int n = arr.size();
         
         priority_queue<int> pq;
         
@@ -24,7 +24,7 @@ public:
         {
             int mostFreq = pq.top();
             n -= mostFreq;
-            if( n <= origArrSize/2)
+            if( n <= halfOrigArrSize)
             {
                 ans++;
                 return ans; 
