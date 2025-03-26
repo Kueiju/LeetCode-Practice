@@ -12,17 +12,17 @@ public:
         int origArrSize = arr.size();
         int n = origArrSize;
         
-        priority_queue<pair<int, int>> pq;
+        priority_queue<int> pq;
         
         for(auto [key, freq] : hMap)
         {
-            pq.push({freq, key}); //O(mlogm)
+            pq.push(freq); //O(mlogm)
         }
         
         int ans = 0;
         while(!pq.empty()) //O(n)
         {
-            int mostFreq = pq.top().first;
+            int mostFreq = pq.top();
             n -= mostFreq;
             if( n <= origArrSize/2)
             {
