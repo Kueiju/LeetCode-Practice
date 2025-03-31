@@ -18,7 +18,8 @@ public:
             {
                 return true;
             }
-            else if(matrix[row][col] < target)
+            
+            if(matrix[row][col] < target)
             {
                 low = mid + 1;
             }
@@ -32,3 +33,6 @@ public:
         
     }
 };
+
+//time complexity: O(logn)
+//space complexity: O(1)
