@@ -13,8 +13,7 @@ public:
             while(left < right)
             {
                 int mid = left + (right - left) / 2;
-                double temp = potions[mid];
-                if(temp >= (success / spell)) //find the most left one if the find vector has duplicated elements
+                if(potions[mid] >= (success / spell)) //find the most left one if the find vector has duplicated elements
                 {
                     right = mid;
                 }
