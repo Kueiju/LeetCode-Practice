@@ -9,32 +9,28 @@ public:
         
         for(auto val : spells)
         {
-            int sum = 0;
             int left = 0;
             int right = potions.size() - 1;
 
             while(left <= right)
             {
                 int mid = left + (right - left) / 2;
-                //long long retval = val * potions[mid];
                 if(potions[mid] >= (success + val - 1) / val)
                 {
-                    sum += right - mid + 1;
-                    //cout << "right = " << right << endl;
-                    //cout << "mid = " << mid << endl;
-                    //cout << "sum = " << sum << endl;
                     right = mid - 1;
                 }
                 else
                 {
                     left = mid + 1;
-                    //cout << "left = " << left << endl;
                 }
             }
 
-            returnVec.push_back(sum);
+            returnVec.push_back(potions.size() - left);
         }
         
         return returnVec;
     }
 };
+
+//time complexity => sort: O(mlogm) + binary search: O(nlogm)
+//space complexity => O(n)
