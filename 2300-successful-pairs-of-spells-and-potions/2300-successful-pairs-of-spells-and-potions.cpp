@@ -3,7 +3,7 @@ public:
     vector<int> successfulPairs(vector<int>& spells, vector<int>& potions, long long success) {
 
         sort(potions.begin(), potions.end());
-        cout << potions[0] << endl;
+        //cout << potions[0] << endl;
 
         vector<int> returnVec;
         
@@ -16,8 +16,8 @@ public:
             while(left <= right)
             {
                 int mid = left + (right - left) / 2;
-                int retval = val * potions[mid];
-                if(retval >= success)
+                //long long retval = val * potions[mid];
+                if(potions[mid] >= (success + val - 1) / val)
                 {
                     sum += right - mid + 1;
                     //cout << "right = " << right << endl;
