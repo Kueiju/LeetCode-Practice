@@ -16,17 +16,15 @@ public:
         if(root == nullptr)
             return false;
 
-        if(root->left == nullptr && root->right == nullptr)
+        targetSum -= root->val;
+        if((root->left == nullptr) && (root->right == nullptr))
         {
-            if(targetSum == root->val)
-                return true;
+            return targetSum == 0;
         }
 
-        return hasPathSum(root->left, targetSum - root->val) || hasPathSum(root->right, targetSum - root->val);
+        bool left = hasPathSum(root->left, targetSum);
+        bool right = hasPathSum(root->right, targetSum);
 
-
-        
-        
-        
+        return left || right;
     }
 };
