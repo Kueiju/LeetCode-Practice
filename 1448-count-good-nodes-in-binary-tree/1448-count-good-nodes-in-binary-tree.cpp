@@ -12,22 +12,39 @@
 class Solution {
 public:
     int goodNodes(TreeNode* root) {
-        return dfs(root, INT_MIN);
-    }
 
-    int dfs(TreeNode* node, int max_so_far)
-    {
-        if(node == nullptr)
+        if(root == nullptr)
             return 0;
 
-        int ans = (node->val >= max_so_far) ? 1 : 0;
-        max_so_far = max(max_so_far, node->val);
+        stack<pair<TreeNode*, int>> st;
+        st.push({root, root->val});
 
-        ans += dfs(node->left, max_so_far);
-        ans += dfs(node->right, max_so_far);
+        int goodnode = 0;
+        //int max1 = INT_MIN;
 
-        return ans;
+        while(!st.empty())
+        {
+            auto [node, val] = st.top();
+            st.pop();
+
+            int max1 = max(node->val, val);
+
+            if(val >= max1)
+            {
+                goodnode++;
+            }
+
+            if(node->left != nullptr)
+            {
+                st.push({node->left, max1});
+            }
+
+            if(node->right != nullptr)
+            {
+                st.push({node->right, max1});
+            }
+        }
+        
+        return goodnode;
     }
-
-
 };
