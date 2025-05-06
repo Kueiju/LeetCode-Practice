@@ -23,7 +23,9 @@ public:
 
         while(!st.empty())
         {
-            auto [node, depth] = st.top();
+            TreeNode* node = st.top().first;
+            int depth = st.top().second;
+
             st.pop();
 
             ans = max(ans, depth);
