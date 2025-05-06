@@ -16,9 +16,25 @@ public:
         if(root == nullptr)
             return 0;
         
-        int left = 1 + maxDepth(root->left);
-        int right = 1 + maxDepth(root->right);
+        stack<pair<TreeNode*, int>> st;
+        st.push(pair(root, 1));
 
-        return max(left, right);     
+        int ans = 0;
+
+        while(!st.empty())
+        {
+            auto [node, depth] = st.top();
+            st.pop();
+
+            ans = max(ans, depth);
+
+            if(node->left != nullptr)
+                st.push(pair(node->left, depth + 1));
+
+            if(node->right != nullptr)
+                st.push(pair(node->right, depth + 1));
+        }  
+
+        return ans;
     }
 };
