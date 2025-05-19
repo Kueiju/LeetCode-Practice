@@ -24,10 +24,7 @@ public:
         while(!q.empty())
         {
             int currentlevel = q.size();
-
-            //bool noChild = false;
             sum = 0;
-
             for(int i = 0; i < currentlevel; i++)
             {
                 TreeNode* node = q.front();
@@ -38,18 +35,13 @@ public:
                 if(node->left)
                 {
                     q.push(node->left);
-                    //noChild = true;
                 }
                 
                 if(node->right)
                 {
                     q.push(node->right);
-                    //noChild = true;
                 }
             }
-
-            //if(noChild == false)
-            //    return sum;
         }
         
         return sum;
