@@ -19,7 +19,7 @@ public:
         queue<TreeNode*> q;
         q.push(root);
 
-        int sum = q.front()->val;
+        int sum = 0;
 
         while(!q.empty())
         {
