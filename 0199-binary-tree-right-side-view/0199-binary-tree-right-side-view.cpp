@@ -25,6 +25,8 @@ public:
         {
             int currentlevel = q.size();
 
+            vec.push_back(q.back()->val);
+
             for(int i = 0; i < currentlevel; i++)
             {
                 TreeNode* node = q.front();
@@ -38,11 +40,6 @@ public:
                 if(node->right != nullptr)
                 {
                     q.push(node->right);
-                }
-
-                if(i == currentlevel - 1)
-                {
-                    vec.push_back(node->val);
                 }
             }
         }
