@@ -25,7 +25,7 @@ public:
         {
             int currentlevel = q.size();
 
-            bool noChild = false;
+            //bool noChild = false;
             sum = 0;
 
             for(int i = 0; i < currentlevel; i++)
@@ -38,18 +38,18 @@ public:
                 if(node->left)
                 {
                     q.push(node->left);
-                    noChild = true;
+                    //noChild = true;
                 }
                 
                 if(node->right)
                 {
                     q.push(node->right);
-                    noChild = true;
+                    //noChild = true;
                 }
             }
 
-            if(noChild == false)
-                return sum;
+            //if(noChild == false)
+            //    return sum;
         }
         
         return sum;
