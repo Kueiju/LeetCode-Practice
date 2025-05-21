@@ -20,11 +20,17 @@ public:
 
         if(root->val <= high && root->val >= low)
         {
-            sum += root->val;
+            sum = root->val + rangeSumBST(root->left, low, high) + rangeSumBST(root->right, low, high);
         }
+        else if(root->val < low)
+        {
+            return rangeSumBST(root->right, low, high);
+        }
+        else
+            return rangeSumBST(root->left, low, high);
 
-        int left = rangeSumBST(root->left, low, high);
-        int right = rangeSumBST(root->right, low, high);
+        // int left = rangeSumBST(root->left, low, high);
+        // int right = rangeSumBST(root->right, low, high);
         
         return sum;
     }
