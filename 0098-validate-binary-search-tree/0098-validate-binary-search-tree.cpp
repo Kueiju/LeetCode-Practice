@@ -12,25 +12,24 @@
 class Solution {
 public:
 
-    bool dfs(TreeNode* root, long min, long max)
+    bool checkBST(TreeNode* node, long min, long max)
     {
-        //vector<int> vec;
-        if(root == nullptr)
+        if(node == nullptr)
             return true;
         
-        if(root->val > min && root->val < max)
+        if(node->val > min && node->val < max)
         {
-            bool left = dfs(root->left, min, root->val);
-            bool right = dfs(root->right, root->val, max);
-
+            bool left = checkBST(node->left, min, node->val);
+            bool right = checkBST(node->right, node->val, max);
+            
             return left && right;
         }
-        else
-            return 0;
+        
+        return false;
     }
 
     bool isValidBST(TreeNode* root) {
         
-        return dfs(root, LONG_MIN, LONG_MAX);
+        return checkBST(root, LONG_MIN, LONG_MAX);
     }
 };
