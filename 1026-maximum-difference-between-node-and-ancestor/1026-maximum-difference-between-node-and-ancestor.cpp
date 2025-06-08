@@ -11,22 +11,21 @@
  */
 class Solution {
 public:
-    int dfs(TreeNode* root, int currMax, int currMin)
-    {
-        if(root == nullptr)
-            return currMax - currMin;
+    int dfs(TreeNode* node, int max, int min)
+    {   
+        if(node == nullptr)
+            return max - min;
         
-        currMax = max(currMax, root->val);
-        currMin = min(currMin, root->val);
-
-        int left = dfs(root->left, currMax, currMin);
-        int right = dfs(root->right, currMax, currMin);
-
-        return max(left, right);
+        max = std::max(max, node->val);
+        min = std::min(min, node->val);
+        
+        return std::max(dfs(node->left, max, min), dfs(node->right, max, min));
     }
+    
     int maxAncestorDiff(TreeNode* root) {
-
         return dfs(root, root->val, root->val);
-        
     }
 };
+
+//time complexity: O(n), since we have to visit each node
+//space complexity: O(n), worst case if it is skewed tree, O(logn) if it is a balanced tree
