@@ -12,7 +12,7 @@
 class Solution {
 public:
 
-    bool checkBST(TreeNode* node, long min, long max)
+    bool checkBST(TreeNode* node, int min, int max)
     {
         if(node == nullptr)
             return true;
@@ -30,6 +30,6 @@ public:
 
     bool isValidBST(TreeNode* root) {
         
-        return checkBST(root, LONG_MIN, LONG_MAX);
+        return checkBST(root, INT_MIN, INT_MAX);
     }
 };
