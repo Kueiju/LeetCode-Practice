@@ -1,26 +1,30 @@
 class Solution {
 public:
-    unordered_set<int> seen;
+
+    unordered_set<int> set;
     vector<vector<int>> rooms;
 
     void dfs(int node)
     {
-        for(auto& val : rooms[node])
+        for(auto val : rooms[node])
         {
-            if(seen.find(val) == seen.end())
+            if(!set.contains(val))
             {
-                seen.insert(val);
+                set.insert(val);
+
                 dfs(val);
             }
         }
     }
 
-    bool canVisitAllRooms(vector<vector<int>> rooms) {
+    bool canVisitAllRooms(vector<vector<int>>& rooms) {
         this->rooms = rooms;
-        seen.insert(0);
+
+        set.insert(0);
+
         dfs(0);
 
-        return seen.size() == rooms.size();
+        return set.size() == rooms.size();
         
     }
 };
