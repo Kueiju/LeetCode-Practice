@@ -2,8 +2,8 @@ class Solution {
 public:
     double findMaxAverage(vector<int>& nums, int k) {
         
-        double sum = 0.0;
-        double maxval = 0.0;
+        int sum = 0.0;
+        int maxval = 0.0;
         
         for(int i = 0; i < k; i++)
         {
@@ -16,9 +16,9 @@ public:
         {
             sum += nums[i] - nums[i - k];
             
-            maxval = fmax(maxval, sum);
+            maxval = max(maxval, sum);
         }
         
-        return maxval / k;
+        return (double)maxval / k;
     }
 };
