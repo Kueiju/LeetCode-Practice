@@ -2,16 +2,15 @@ class Solution {
 public:
     int minStartValue(vector<int>& nums) {
         
-        vector<int> prefix = {nums[0]};
-        int minval = min(INT_MAX, nums[0]);
+        int minval = 0, sum = 0;
         
-        for(int i = 1; i < nums.size(); i++)
+        for(int i = 0; i < nums.size(); i++)
         {
-            prefix.push_back(prefix.back() + nums[i]);
-            minval = min(minval, prefix.back());
+            sum += nums[i];
+            minval = min(minval, sum);
         }
         
-        return (minval >= 0) ? 1 : abs(minval) + 1;
+        return (minval <= 0) ? (abs(minval) + 1) : 1;
         
     }
 };
