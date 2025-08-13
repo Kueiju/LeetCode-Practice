@@ -2,7 +2,7 @@ class Solution {
 public:
     int waysToSplitArray(vector<int>& nums) {
 
-        vector<long long> prefix = {nums[0]};
+        vector<long> prefix = {nums[0]};
 
         for(int i = 1; i < nums.size(); i++)
         {
