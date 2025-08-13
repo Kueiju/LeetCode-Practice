@@ -6,7 +6,7 @@ public:
 
         int size = nums.size();
         
-        vector<long long> ans (size, -1);
+        vector<int> ans (size, -1);
         
         if(size < 2*k + 1)
             return ans;
