@@ -2,27 +2,20 @@ class Solution {
 public:
     int minimumCardPickup(vector<int>& cards) {
 
-        if(cards.size() <= 1)
-            return -1;
-
         unordered_map<int, int> hMap;
 
-        int ans = -1;
+        int ans = INT_MAX;
 
         for(int i = 0; i < cards.size(); i++)
         {
             auto it = hMap.find(cards[i]);
-            if(it == hMap.end())
+            if(it != hMap.end())
             {
-                hMap.emplace(cards[i], i);
+                ans = min(ans, i - hMap[cards[i]] + 1);
             }
-            else
-            {
-                ans = (ans == -1) ? max(ans, (i - hMap[cards[i]] + 1)) : min(ans, i - hMap[cards[i]] + 1);
-                hMap[cards[i]] = i;
-            }
+            hMap[cards[i]] = i;
         }
         
-        return ans;
+        return (ans == INT_MAX) ? -1 : ans;
     }
 };
