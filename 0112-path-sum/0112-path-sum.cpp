@@ -16,12 +16,34 @@ public:
         if(root == nullptr)
             return false;
         
-        if(root->left == nullptr && 
-           root->right == nullptr)
-           return root->val == targetSum;
+        stack<pair<TreeNode*, int>> st;
+        st.push(pair(root, targetSum - root->val));
 
-        return hasPathSum(root->left, targetSum - root->val) ||
-               hasPathSum(root->right, targetSum - root->val);
-        
+        while(!st.empty())
+        {
+            auto [node, val] = st.top();
+            st.pop();
+
+            if((node->left == nullptr) && 
+               (node->right == nullptr) && 
+               (val == 0))
+                return true;
+
+            //targetSum -= val;
+
+            if(node->left)
+            {
+                st.push(pair(node->left, val - node->left->val));
+            } 
+
+            if(node->right)
+            {
+                st.push(pair(node->right, val - node->right->val));
+            }
+
+            //cout << targetSum << endl;
+        }
+
+        return false;
     }
 };
