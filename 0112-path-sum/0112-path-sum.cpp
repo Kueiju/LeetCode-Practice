@@ -15,31 +15,13 @@ public:
 
         if(root == nullptr)
             return false;
+        
+        if(root->left == nullptr && 
+           root->right == nullptr)
+           return root->val == targetSum;
 
-        stack<pair<TreeNode*, int>> st;
-        st.push(pair(root, root->val));
-
-        while(!st.empty())
-        {
-            auto [node, val] = st.top();
-            st.pop();
-
-            if((node->left == nullptr) && (node->right == nullptr) && (val == targetSum))
-            {
-                return true;
-            }
-
-            if(node->left != nullptr)
-            {
-                st.push(pair(node->left, val + node->left->val));
-            }
-
-            if(node->right != nullptr)
-            {
-                st.push(pair(node->right, val + node->right->val));
-            }
-        }
-
-        return false;
+        return hasPathSum(root->left, targetSum - root->val) ||
+               hasPathSum(root->right, targetSum - root->val);
+        
     }
 };
