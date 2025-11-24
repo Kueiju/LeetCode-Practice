@@ -12,31 +12,13 @@
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-
         if(root == nullptr)
             return 0;
+
+        int leftlen = 1 + maxDepth(root->left);
+        int rightlen = 1 + maxDepth(root->right);
+
+        return max(leftlen, rightlen);
         
-        stack<pair<TreeNode*, int>> st;
-        st.push(pair(root, 1));
-
-        int ans = 0;
-
-        while(!st.empty())
-        {
-            TreeNode* node = st.top().first;
-            int depth = st.top().second;
-
-            st.pop();
-
-            ans = max(ans, depth);
-
-            if(node->left != nullptr)
-                st.push(pair(node->left, depth + 1));
-
-            if(node->right != nullptr)
-                st.push(pair(node->right, depth + 1));
-        }  
-
-        return ans;
     }
 };
