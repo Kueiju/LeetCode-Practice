@@ -19,34 +19,35 @@ public:
         queue<TreeNode*> q;
         q.push(root);
 
-        vector<int> vec;
+        vector<int> ans;
 
         while(!q.empty())
         {
-            int currentlevel = q.size();
+            int nodelevel = q.size();
 
-            vec.push_back(q.back()->val);
+            vector<int> temp;
 
-            for(int i = 0; i < currentlevel; i++)
+            for(int i = 0; i < nodelevel; i++)
             {
-                TreeNode* node = q.front();
+                TreeNode* level = q.front();
                 q.pop();
 
-                if(node->left != nullptr)
+                temp.emplace_back(level->val);
+
+                if(level->left)
                 {
-                    q.push(node->left);
+                    q.push(level->left);
                 }
 
-                if(node->right != nullptr)
+                if(level->right)
                 {
-                    q.push(node->right);
+                    q.push(level->right);
                 }
             }
+
+            ans.emplace_back(temp.back());
         }
         
-        return vec;
+        return ans;
     }
 };
-
-//Time complexity: O(n)
-//Space complexity: O(n)
