@@ -14,38 +14,38 @@ public:
     vector<int> largestValues(TreeNode* root) {
 
         if(root == nullptr)
-            return vector<int>{};
+            return vector<int>();
 
+        queue<TreeNode*> q;
+        q.push(root);
         vector<int> ans;
-        queue<TreeNode*> qe;
-        qe.push(root);
 
-        while(!qe.empty())
+        while(!q.empty())
         {
-            int currentlevel = qe.size();
+            int nodelevel = q.size();
             int maxval = INT_MIN;
 
-            for(int i = 0; i < currentlevel; i++)
+            for(int i = 0; i < nodelevel; i++)
             {
-                TreeNode* node = qe.front();
-                qe.pop();
+                TreeNode* node = q.front();
+                q.pop();
 
                 maxval = max(maxval, node->val);
 
                 if(node->left)
-                    qe.push(node->left);
+                {
+                    q.push(node->left);
+                }
 
                 if(node->right)
-                    qe.push(node->right);
+                {
+                    q.push(node->right);
+                }
             }
 
-            ans.push_back(maxval);
+            ans.emplace_back(maxval);
         }
-        
-        return ans;
+
+        return ans;   
     }
 };
-
-
-//time complexity: O(n), every node will be visited once
-//space complexity: O(n), since the max queue size will be O(n) ~= O(n/2) in each level, plus the vector element (each time 1 element, max O(n)), so it is O(n)
