@@ -25,14 +25,15 @@ public:
         {
             int nodelevel = q.size();
 
-            vector<int> temp;
+            //vector<int> temp;
 
             for(int i = 0; i < nodelevel; i++)
             {
                 TreeNode* level = q.front();
                 q.pop();
 
-                temp.emplace_back(level->val);
+                if(i == nodelevel - 1)
+                ans.emplace_back(level->val);
 
                 if(level->left)
                 {
@@ -45,7 +46,7 @@ public:
                 }
             }
 
-            ans.emplace_back(temp.back());
+            //ans.emplace_back(temp.back());
         }
         
         return ans;
