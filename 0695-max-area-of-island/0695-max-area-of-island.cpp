@@ -66,3 +66,6 @@ public:
     }
 
 };
+
+// time complexity is O(m * n), since every grid will be visited once
+// space complexity is O(m * n), which comes from seen
