@@ -11,17 +11,17 @@ public:
 
     int maxAreaOfIsland(vector<vector<int>>& grid) {
 
-        this->m = grid[0].size();
-        this->n = grid.size();
-        this->grid = grid;
+        n = grid.size();
+        m = grid[0].size();
+        seen.assign(n, vector<bool>(m, false));
 
-        seen = vector(grid.size(), vector<bool>(grid[0].size(), false));
+        this->grid = grid;
 
         int ans = 0;
 
-        for(int row = 0; row < grid.size(); row++)
+        for(int row = 0; row < n; row++)
         {
-            for(int col = 0; col < grid[0].size(); col++)
+            for(int col = 0; col < m; col++)
             {
                 if(!seen[row][col])
                 {
@@ -45,16 +45,14 @@ public:
             int nextrow = ro + direct[0];
             int nextcol = co + direct[1];
         
-            if(valid(nextrow, nextcol))
-            {
-                if(!seen[nextrow][nextcol])
-                {
-                    seen[nextrow][nextcol] = true;
+            if(valid(nextrow, nextcol) &&
+               !seen[nextrow][nextcol])
+            {        
+                seen[nextrow][nextcol] = true;
 
-                    if(grid[nextrow][nextcol] == 1)
-                    {
-                        area += dfs(nextrow, nextcol);
-                    }
+                if(grid[nextrow][nextcol] == 1)
+                {
+                    area += dfs(nextrow, nextcol);
                 }
             }
         }
