@@ -23,11 +23,13 @@ public:
         {
             for(int col = 0; col < grid[0].size(); col++)
             {
-                if(!seen[row][col] && grid[row][col] == 1)
+                if(!seen[row][col])
                 {
-                    ans++;
                     seen[row][col] = true;
-                    dfs(row, col);
+                    if(grid[row][col] == 1)
+                    {
+                        ans = max(ans, dfs(row, col));
+                    }
                 }
             }
         }
@@ -35,8 +37,9 @@ public:
         return ans;
     }
 
-    void dfs(int ro, int co)
+    int dfs(int ro, int co)
     {
+        int area = 1;
         for(vector<int> direct : direction)
         {
             int nextrow = ro + direct[0];
@@ -44,15 +47,24 @@ public:
         
             if(valid(nextrow, nextcol))
             {
-                seen[nextrow][nextcol] = true;
-                dfs(nextrow, nextcol);
+                if(!seen[nextrow][nextcol])
+                {
+                    seen[nextrow][nextcol] = true;
+
+                    if(grid[nextrow][nextcol] == 1)
+                    {
+                        area += dfs(nextrow, nextcol);
+                    }
+                }
             }
         }
+
+        return area;
     }
 
     bool valid(int row, int col)
     {
-        return row >= 0 && row < n && col >= 0 && col < m && !seen[row][col] && grid[row][col] == 1;
+        return row >= 0 && row < n && col >= 0 && col < m;
     }
 
 };
