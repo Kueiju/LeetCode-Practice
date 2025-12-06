@@ -1,41 +1,46 @@
 class Solution {
 public:
+    
+    unordered_map<int, vector<int>> graph;
+    
+    vector<bool> seen;
+    
     int reachableNodes(int n, vector<vector<int>>& edges, vector<int>& restricted) {
-
-        vector<bool> seen(n, false);
-
-        vector<vector<int>> neighbors(n);
-        for (auto& edge : edges) {
-            int nodeA = edge[0], nodeB = edge[1];
-            neighbors[nodeA].push_back(nodeB);
-            neighbors[nodeB].push_back(nodeA);
-        }
-
-        for(auto res : restricted)
+        
+        seen.assign(n, false);
+        
+        for(auto edge : edges)
         {
-            seen[res] = true;
+            int x = edge[0];
+            int y = edge[1];
+            
+            graph[x].push_back(y);
+            graph[y].push_back(x);
         }
-
-        queue<int> q;
-        q.push(0);
-
-        int ans = 0;
-        seen[0] = true;
-
-        while(!q.empty())
-        {    
-            int currNode = q.front();
-            q.pop();
-            ans++;
-
-            for (auto nextNode : neighbors[currNode]) {
-                if (!seen[nextNode]) {
-                    seen[nextNode] = true;
-                    q.push(nextNode);
-                }
+        
+        //seen[0] = true;
+        
+        unordered_set<int> set (restricted.begin(), restricted.end());
+        
+        return dfs(0, set);
+    }
+    
+    int dfs(int node, unordered_set<int>& set)
+    {
+        seen[node] = true;
+        
+        int ans = 1;
+        
+        for(int neighbor : graph[node])
+        {
+            if(!seen[neighbor] && !set.contains(neighbor))
+            {
+                ans += dfs(neighbor, set);
             }
         }
-
+        
         return ans;
     }
+    
+    
 };
